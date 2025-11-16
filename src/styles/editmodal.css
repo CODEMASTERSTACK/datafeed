@@ -1,0 +1,99 @@
+.edit-modal {
+  max-width: 800px;
+  background: linear-gradient(180deg, rgba(11, 11, 13, 0.98), rgba(11, 11, 13, 0.95));
+  border: 1px solid rgba(246, 201, 101, 0.2);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(246, 201, 101, 0.15), 0 0 40px rgba(246, 201, 101, 0.1);
+}
+
+.edit-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(246, 201, 101, 0.1);
+}
+
+.edit-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.edit-modal-header button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.edit-modal-header button:hover {
+  color: var(--accent);
+}
+
+.edit-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.edit-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-form-group label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.edit-form-group input,
+.edit-form-group textarea {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(246, 201, 101, 0.15);
+  background: linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.2));
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.edit-form-group input::placeholder,
+.edit-form-group textarea::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+.edit-form-group input:focus,
+.edit-form-group textarea:focus {
+  outline: none;
+  border-color: rgba(246, 201, 101, 0.4);
+  background: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.3));
+  box-shadow: 0 0 20px rgba(246, 201, 101, 0.2), inset 0 0 10px rgba(246, 201, 101, 0.05);
+}
+
+.edit-modal-actions {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(246, 201, 101, 0.1);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 800px) {
+  .edit-form {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-modal-actions {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,34 @@
+.datafeeder-container { min-height:100vh; padding:36px 20px }
+
+.datafeeder-header { text-align:center; margin-bottom:26px }
+.datafeeder-header h1 { font-size:28px; margin-bottom:6px; font-weight:800 }
+.user-name { background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); padding:4px 10px; border-radius:999px; font-style:italic; color:var(--text) }
+.datafeeder-header p { color:var(--muted); margin:0 }
+
+.datafeeder-content { max-width:1200px; margin:0 auto }
+
+.add-response-section { display:flex; justify-content:center; margin-bottom:30px }
+.add-btn { display:flex; align-items:center; gap:12px; padding:12px 22px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#0b0b0d; font-weight:700; box-shadow: 0 12px 40px rgba(0,0,0,0.6); border:none }
+.add-icon { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.95); display:flex; align-items:center; justify-content:center }
+
+.form-section { margin-bottom:28px }
+
+.responses-section { padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03) }
+
+.section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px }
+.section-header h2 { font-size:18px; margin:0 }
+
+.refresh-btn { background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); width:40px; height:40px; border-radius:50% }
+.refresh-btn:hover:not(:disabled) { color:var(--text); border-color:rgba(255,255,255,0.08) }
+
+.loading-state { display:flex; flex-direction:column; align-items:center; padding:40px 20px }
+.spinner { width:36px; height:36px; border:4px solid rgba(255,255,255,0.06); border-top-color:var(--accent); border-radius:50%; animation:spin 1s linear infinite }
+@keyframes spin { to { transform:rotate(360deg) } }
+
+.loading-state p { color:var(--muted) }
+.empty-state { text-align:center; padding:40px 10px; color:var(--muted) }
+
+@media (max-width:768px) {
+  .datafeeder-header h1 { font-size:20px }
+  .add-btn { padding:10px 16px }
+}
