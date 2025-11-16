@@ -6,7 +6,7 @@ import ConfirmModal from '../components/ConfirmModal';
 import SuccessModal from '../components/SuccessModal';
 import EditResponseModal from '../components/EditResponseModal';
 import type { DataResponse } from '../types';
-import { submitResponses, getUserDraftResponses } from '../services/database';
+import { submitResponses, getUserDraftResponses, deleteDraftResponse } from '../services/database';
 
 const FinalTouchPage: React.FC = () => {
   const location = useLocation();
@@ -53,6 +53,7 @@ const FinalTouchPage: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editData, setEditData] = useState<Partial<DataResponse> | null>(null);
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   const handleToggleSelect = (localId: string) => {
     setSelectedIds(prev => {
@@ -89,6 +90,21 @@ const FinalTouchPage: React.FC = () => {
     );
     setEditingId(null);
     setEditData(null);
+  };
+
+  const handleDeleteResponse = async (localId: string, responseId: string | undefined) => {
+    try {
+      // Delete from Firestore if it has a server ID
+      if (responseId) {
+        await deleteDraftResponse(responseId);
+      }
+      // Remove from local state
+      setResponses((prev) => prev.filter((r) => r._localId !== localId));
+      setDeleteConfirmId(null);
+    } catch (error) {
+      console.error('Error deleting response:', error);
+      alert('Failed to delete response: ' + (error as any)?.message);
+    }
   };
 
   const handlePostFinalTouch = () => {
@@ -260,6 +276,14 @@ const FinalTouchPage: React.FC = () => {
                     >
                       ✎ Edit
                     </motion.button>
+                    <motion.button
+                      className="delete-btn"
+                      onClick={() => setDeleteConfirmId(response._localId)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      🗑️ Delete
+                    </motion.button>
                   </div>
                 </div>
               </motion.div>
@@ -299,6 +323,19 @@ const FinalTouchPage: React.FC = () => {
             response={editData as DataResponse}
             onSave={handleSaveEdit}
             onCancel={() => setEditingId(null)}
+          />
+        )}
+        {deleteConfirmId && (
+          <ConfirmModal
+            onConfirm={() => {
+              const response = responses.find((r) => r._localId === deleteConfirmId);
+              if (response) {
+                handleDeleteResponse(deleteConfirmId, response.id);
+              }
+            }}
+            onCancel={() => setDeleteConfirmId(null)}
+            message="Are you sure you want to delete this response? This action cannot be undone."
+            confirmText="Delete"
           />
         )}
       </AnimatePresence>

@@ -5,9 +5,12 @@ import '../styles/modal.css';
 interface ConfirmModalProps {
   onConfirm: () => void;
   onCancel: () => void;
+  message?: string;
+  confirmText?: string;
+  cancelText?: string;
 }
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({ onConfirm, onCancel }) => {
+const ConfirmModal: React.FC<ConfirmModalProps> = ({ onConfirm, onCancel, message, confirmText = 'Post All', cancelText = 'Cancel' }) => {
   return (
     <motion.div
       className="modal-overlay"
@@ -25,8 +28,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ onConfirm, onCancel }) => {
       >
         <h2 className="confirm-title">⚠ Confirm Action</h2>
         <p className="confirm-message">
-          You haven't selected any particular response so all responses will be posted. 
-          You can cancel and select the particular responses if you want.
+          {message || 'You haven\'t selected any particular response so all responses will be posted. You can cancel and select the particular responses if you want.'}
         </p>
         <div className="modal-actions">
           <motion.button
@@ -35,7 +37,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ onConfirm, onCancel }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Cancel
+            {cancelText}
           </motion.button>
           <motion.button
             className="modal-btn modal-btn-confirm"
@@ -43,7 +45,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ onConfirm, onCancel }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Post All
+            {confirmText}
           </motion.button>
         </div>
       </motion.div>
