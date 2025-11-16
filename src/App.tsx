@@ -6,7 +6,7 @@ import WelcomePage from './pages/WelcomePage';
 import DataFeederPage from './pages/DataFeederPage';
 import FinalTouchPage from './pages/FinalTouchPage';
 import SubmittedTouchPage from './pages/SubmittedTouchPage';
-import { loadDraft, deleteDraft, loadUserData, saveUserData } from './services/localStorage';
+import { loadDraft, deleteDraft, saveUserData } from './services/localStorage';
 import './styles/globals.css';
 
 function AppContent() {
